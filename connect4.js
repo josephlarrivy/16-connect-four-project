@@ -9,21 +9,40 @@ const WIDTH = 7;
 const HEIGHT = 6;
 
 let currPlayer = 1; // active player: 1 or 2
-const board = []; // array of rows, each row is array of cells  (board[y][x])
+let board = []; // array of rows, each row is array of cells  (board[y][x])
+
+
+
+
+
+
+
+
 
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
-
+// TODO: set "board" to empty HEIGHT x WIDTH matrix array
 function makeBoard() {
-  // TODO: set "board" to empty HEIGHT x WIDTH matrix array
+  for (let i=0; i< HEIGHT; i++);
+    for (let j=0; j< WIDTH; j++)
+      board.push([x,y]);
 }
+
+makeBoard();
+console.log(board);
+
+
+
+
+
+
+
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
 
 function makeHtmlBoard() {
   // TODO: get "htmlBoard" variable from the item in HTML w/ID of "board"
-  htmlBoard
 
   // TODO: add comment for this code
   let top = document.createElement("tr");
