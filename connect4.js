@@ -70,19 +70,16 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // TODO: write the real version of this, rather than always returning 0
+  // TODO(done): write the real version of this, rather than always returning 0
   //this function returns the height where the next piece should drop down to
-  for (let y=HEIGHT -1; y>=0; y--) {
-    for (let y = HEIGHT - 1; y >= 0; y--) {
+  for (let y=HEIGHT-1; y>=0; y--) {
       if (!board[y][x]) {
         return y;
-    } else {
-        return null;
-    }
-    }
+      }
   }
+  return null;
 }
-//this function returns the height where the next piece should drop down to
+
 
 
 
@@ -95,28 +92,22 @@ function findSpotForCol(x) {
 /** placeInTable: update DOM to place piece into HTML table of board */
 
 function placeInTable(y, x) {
-  // TODO: make a div and insert into correct table cell
+  // TODO(done): make a div and insert into correct table cell
   const checker = document.createElement('div');
   checker.classList.add('piece');
   checker.classList.add(`player${currPlayer}Piece`);
-  // TODO: add the div to the correct td cell in the HTML game board (STEP Five in instructions)
+  // TODO(done): add the div to the correct td cell in the HTML game board (STEP Five in instructions)
   
   let place = document.getElementById(`${y}-${x}`);
 
   place.append(checker);
 }
 
-
-
-
-
-
-
 /** endGame: announce game end */
 
 function endGame(msg) {
   // TODO(done): pop up alert message
-  setTimeout(alert(`Player ${currPlayer} wins!`), 200)
+  setTimeout(alert(msg), 200)
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -153,24 +144,15 @@ function handleClick(evt) {
   }
 
   // check for tie
-  // TODO: check if all cells in board are filled; if so call, endGame
-  // if (board.every(row => row.every(cell => cell))) {
-  //   return endGame('Tie!');
-  // }
+  // TODO(done): check if all cells in board are filled; if so call, endGame
 
-  function checkForTie() {
-    
+
+  if (board.every(row => row.every(cell => cell))) {
+    return endGame('Tie!');
   }
 
+
 //if all cells in the top row are filled, then there must be a tie
-
-
-
-
-
-
-
-
 
   // switch players
   // TODO(done): switch currPlayer 1 <-> 2
