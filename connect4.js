@@ -49,7 +49,7 @@ function makeHtmlBoard() {
   }
   htmlBoard.append(top);
 
-  // TODO: add comment for this code
+  // TODO(done): add comment for this code
   for (let y = 0; y < HEIGHT; y++) {
     //we loop the number of times that the board is tall
     const row = document.createElement("tr");
@@ -71,8 +71,26 @@ function makeHtmlBoard() {
 
 function findSpotForCol(x) {
   // TODO: write the real version of this, rather than always returning 0
-  return 0;
+  //this function returns the height where the next piece should drop down to
+  for (let y=HEIGHT -1; y>=0; y--) {
+    for (let y = HEIGHT - 1; y >= 0; y--) {
+      if (!board[y][x]) {
+        return y;
+    } else {
+        return null;
+    }
+    }
+  }
 }
+//this function returns the height where the next piece should drop down to
+
+
+
+
+
+
+
+
 
 /** placeInTable: update DOM to place piece into HTML table of board */
 
@@ -83,7 +101,9 @@ function placeInTable(y, x) {
   checker.classList.add(`player${currPlayer}Piece`);
   // TODO: add the div to the correct td cell in the HTML game board (STEP Five in instructions)
   
+  let place = document.getElementById(`${y}-${x}`);
 
+  place.append(checker);
 }
 
 
@@ -105,15 +125,27 @@ function handleClick(evt) {
   // get x from ID of clicked cell
   let x = +evt.target.id;
 
+  //TODO: fix function so it finds the lowest spot available in the column
   // get next spot in column (if none, ignore click)
   let y = findSpotForCol(x);
   if (y === null) {
     return;
   }
+  //check all cells by id to see if they have the class of 'piece', if it does, that cell is already occupied
+  //write a loop that will check all cells in the colmn for a class
+
+
+
 
   // place piece in board and add to HTML table
-  // TODO: add line to update in-memory board
+  // TODO(done): add line to update in-memory board
+  currPlayer = board[y][x];
   placeInTable(y, x);
+
+
+
+
+
 
   // check for win
   if (checkForWin()) {
@@ -121,18 +153,16 @@ function handleClick(evt) {
   }
 
   // check for tie
-  // TODO: check if all cells in board are filled; if so call, call endGame
+  // TODO: check if all cells in board are filled; if so call, endGame
+  // if (board.every(row => row.every(cell => cell))) {
+  //   return endGame('Tie!');
+  // }
+
   function checkForTie() {
-    board.every(function(){
-      
-    })
+    
   }
 
-  if (checkForTie()) {
-    return endGame(`The game is a tie`);
-  }
-
-
+//if all cells in the top row are filled, then there must be a tie
 
 
 
@@ -144,7 +174,7 @@ function handleClick(evt) {
 
   // switch players
   // TODO(done): switch currPlayer 1 <-> 2
-  currPlayer = currPlayer = 1 ? 2 : 1;
+  currPlayer = currPlayer === 1 ? 2 : 1;
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
