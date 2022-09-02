@@ -25,16 +25,13 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
 //     board.push(boardRows);
 //   }
 // }
+
 function makeBoard() {
   for (let y=0; y<HEIGHT; y++) {
     board.push(Array.from({length: WIDTH}));
   }
 }
-//is this code^^ object-oriented programming?
-
-
-
-
+//from method: look up on MDN
 
 /** makeHtmlBoard: make HTML table and row of column tops. */
 function makeHtmlBoard() {
@@ -46,7 +43,7 @@ function makeHtmlBoard() {
   let top = document.createElement("tr");
   //JS variable of 'top' is declared with a value of the table row
   top.setAttribute("id", "column-top");
-  //new variable 'top' is given the id of 'column-tp'
+  //new variable 'top' is given the id of 'column-top'
   top.addEventListener("click", handleClick);
   //the 'top' variable gets an event listener of 'click' and the function 'handleClick' executes when the event occurs
 
